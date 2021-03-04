@@ -8,9 +8,10 @@ It's dependency free and you just need to have NodeJS installed on your machine
 
 ## About program
 
-I was practicing parallel programming and concurrency in NodeJS and this one came to my mind.
+In this succinct and dependency free project, a simple and painless approach for parallel processing and also inter-process communication(IPC) with NodeJS has been implemented. It's just an example of how powerful NodeJS can be in terms of conccurent processing. 
 
-### how to run project
+
+### how to run the project
 
 clone:
 
@@ -28,7 +29,7 @@ or:
 
 `node index.js`
 
-then you would have a uuids.txt file with content similar to this one:
+then you would have a uuids.txt file with content similar to following ones:
 
 ```
 ID: 19a0ffc5c6e826568dd5f9382384e723 from process ID: 2232
