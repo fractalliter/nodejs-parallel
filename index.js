@@ -13,15 +13,15 @@ function random(getId){
 const t = [];
 const myTasks = [];
 
-// Creating a queue of 100 tasks
+// Creating a queue for 100 tasks
 for (let i = 0; i < 100; i++) {
   myTasks.push(random);
 }
 
-// Calculating the chunk of tasks for every cpu of machine
+// Calculating the chunk of tasks for every cpu on the machine. in my case number of CPUs are 4
 const chunk = Math.ceil(myTasks.length / numberOfCpus);
 
-// Dividing tasks for every cpu of machine
+// Dividing tasks for every cpu
 for (let i = 0; i < numberOfCpus; i++) {
   let currentIndex = i * chunk;
   t.push(myTasks.slice(
@@ -31,9 +31,9 @@ for (let i = 0; i < numberOfCpus; i++) {
       : myTasks.length));
 }
 
-// Cluster processes for parallel processing
+// Clustering the processes for parallel execution
 if (cluster.isMaster) {
-  // Fork the process for every cpu of machine with a processIndex environment varaible for every of them
+  // Fork the process for every cpu on the machine with a processIndex environment varaible for every of them
   for (let i = 0; i < numberOfCpus; i++) cluster.fork({processIndex: i});
 } else {
   // Get every task for every worker process to be executed concurrently
@@ -44,7 +44,7 @@ if (cluster.isMaster) {
     while (running < concurrency && index < len) {
       let task = tasks[index++];
       task(uuid => {
-        // Out put every random id to file
+        // Output every random id to file
         fs.appendFile(
             'uuids.txt',
             `ID: ${uuid.toString().replace("\n", "")} from process ID: ${process.pid}\n`,
